@@ -26,5 +26,8 @@
   ],
   "type": "module",
   "author": "Your Name",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=16.0.0 <17.0.0"
+  }
 }
