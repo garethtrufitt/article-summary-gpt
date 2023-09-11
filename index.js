@@ -23,11 +23,14 @@ app.post('/scrape-and-summarize', async (req, res) => {
 
         // Get the title from the webpage
         const title = $('head title').text();
+        // Get the article text from the webpage (change the selector to match the structure of the webpage)
+        const articleText = $('body').text();
+
 
         // Step 2: Get a summary from GPT-4
         const openAiResponse = await openai.chat.completions.create({
             model: 'gpt-4',
-            messages: [{ role: 'user', content: `Summarise (in no more than 2 sentences) the article with title: "${title}" and content: "${webpageContent}"` }],
+            messages: [{ role: 'user', content: `Summarise (in no more than 2 sentences) the article with title: "${title}" and content: "${articleText}"` }],
             stream: false,
         });
 
