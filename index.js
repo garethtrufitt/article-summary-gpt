@@ -24,7 +24,11 @@ app.post('/scrape-and-summarize', async (req, res) => {
         // Get the title from the webpage
         const title = $('head title').text();
         // Get the article text from the webpage (change the selector to match the structure of the webpage)
-        const articleText = $('body').text();
+        // Remove unwanted elements such as asides, image tags, etc.
+        $('aside, script, style, img').remove();
+
+        // Get the article text from the webpage (Change the selector to match the structure of the webpage)
+        const articleText = $('.article-content').text() || $('body').text();
 
 
         // Step 2: Get a summary from GPT-4
