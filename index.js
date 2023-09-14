@@ -28,8 +28,7 @@ app.post('/scrape-and-summarize', async (req, res) => {
         $('aside, script, style, img, #comments, .comment, .comments, .comment-list, .comment-content, .comment-body, .disqus-comments, .fb-comments, #comments, #disqus_thread, .comments-area, .comments-section, .user-comments, .post-comments, .blog-comments, .article-comments, .comment-entry, .comment-wrap, .comment-box').remove();
 
         // Get the article text from the webpage (Change the selector to match the structure of the webpage)
-        const articleText = $('.article-content').text() || $('body').text();
-
+        const articleText = $('.article-content').text() || $('.post-content').text() || $('.entry-content').text() || $('.blog-post-content').text() || $('article').text() || $('body').text();
 
         // Step 2: Get a summary from GPT-4
         const openAiResponse = await openai.chat.completions.create({
