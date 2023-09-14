@@ -25,7 +25,7 @@ app.post('/scrape-and-summarize', async (req, res) => {
         const title = $('head title').text();
         // Get the article text from the webpage (change the selector to match the structure of the webpage)
         // Remove unwanted elements such as asides, image tags, etc.
-        $('aside, script, style, img').remove();
+        $('aside, script, style, img, #comments, .comment, .comments, .comment-list, .comment-content, .comment-body, .disqus-comments, .fb-comments, #comments, #disqus_thread, .comments-area, .comments-section, .user-comments, .post-comments, .blog-comments, .article-comments, .comment-entry, .comment-wrap, .comment-box').remove();
 
         // Get the article text from the webpage (Change the selector to match the structure of the webpage)
         const articleText = $('.article-content').text() || $('body').text();
