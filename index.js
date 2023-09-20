@@ -61,21 +61,14 @@ app.post('/scrape-and-summarize', async (req, res) => {
                 stream: false,
             });
 
-            hackerNewsCommentsSummary = openAiResponseComments.choices[0].message.content;
+            hackerNewsCommentsSummary = openAiResponseComments.choices[0].message.content || 'Not on hacker news';
         }
         // Step 4: Create a markdown representation
-        const markdownData = `
-
-# ${title}
-${url}
-${description}
-
-## Summary
-${summary}
-
-## Hacker News Comment Summary
-${hackerNewsCommentsSummary}
-`;
+        const markdownData = `<h2><a href="${url}">${title}</a></h2><p>${description}</p>
+<h3>Summary</h3>
+<p>${summary}</p>
+<h3>Hacker News Comment Summary</h3>
+<p>${hackerNewsCommentsSummary}</p>`;
 
 
 
